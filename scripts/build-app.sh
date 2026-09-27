@@ -13,9 +13,10 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
 <key>CFBundleName</key><string>KeyboardBridge</string>
 <key>CFBundleExecutable</key><string>KeyboardBridge</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>0.1.0</string>
+<key>CFBundleShortVersionString</key><string>0.2.0</string>
 <key>LSMinimumSystemVersion</key><string>13.0</string>
 <key>LSUIElement</key><true/>
+<key>NSBluetoothAlwaysUsageDescription</key><string>发现并连接你的键盘桥接收器，通过蓝牙转发键盘输入。</string>
 <key>NSLocalNetworkUsageDescription</key><string>连接你配对的键盘接收器并发送键盘输入。</string>
 </dict></plist>
 PLIST

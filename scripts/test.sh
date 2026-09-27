@@ -7,3 +7,5 @@ swiftc Sources/KeyboardBridge/Protocol.swift Tests/KeyboardBridgeTests/ProtocolT
 python3 -m py_compile scripts/mock_receiver.py
 
 python3 scripts/test_mock.py
+swiftc Sources/KeyboardBridge/BLEProtocol.swift Tests/KeyboardBridgeTests/BLETests.swift -o .build/ble-tests
+.build/ble-tests
