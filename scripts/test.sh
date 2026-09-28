@@ -9,3 +9,5 @@ python3 -m py_compile scripts/mock_receiver.py
 python3 scripts/test_mock.py
 swiftc Sources/KeyboardBridge/BLEProtocol.swift Tests/KeyboardBridgeTests/BLETests.swift -o .build/ble-tests
 .build/ble-tests
+c++ -std=c++11 firmware/tests/frame_test.cpp -o .build/firmware-frame-test
+.build/firmware-frame-test

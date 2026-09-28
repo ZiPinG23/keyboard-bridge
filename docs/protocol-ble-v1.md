@@ -1,6 +1,6 @@
 # Keyboard Bridge BLE v1
 
-Mac 是 Core Bluetooth central，ESP32-S3 是 BLE peripheral，Windows 只见 USB HID 键盘。无需 Wi-Fi、IP 或路由器。当前仓库实现 Mac 客户端与离线协议测试，**尚无 ESP32 固件，未完成真实 BLE/USB 联调**。
+Mac 是 Core Bluetooth central，ESP32-S3 是 BLE peripheral，Windows 只见 USB HID 键盘。无需 Wi-Fi、IP 或路由器。当前仓库实现 Mac 客户端与离线协议测试，已实现 `firmware/` 接收器，**未完成真实 BLE/USB 联调**。
 
 ## GATT
 
@@ -9,9 +9,9 @@ Mac 是 Core Bluetooth central，ESP32-S3 是 BLE peripheral，Windows 只见 US
 - ACK：`77E10003-4B42-4D41-8B52-494447453031`，Notify。
 - 建议设备名 `KeyboardBridge-XXXX`。名称仅供显示，不是身份认证依据。
 
-固件必须要求加密后才允许 INPUT 写入和 ACK 订阅/通知，并启用 LE Secure Connections 和 bonding。未绑定设备仅可在用户按物理按钮开启的短暂配对窗口内绑定；正常模式只允许已绑定的 central 控制。首次配对的身份验证方式须在固件阶段确定，不能把 Just Works 当作抗中间人认证。Mac 的 Core Bluetooth 会响应外设安全要求，Mac UI 不自行读取或保存蓝牙链路密钥。
+固件必须要求加密后才允许 INPUT 写入和 ACK 订阅/通知，并启用 LE Secure Connections 和 bonding。未绑定设备仅可在用户按物理按钮开启的短暂配对窗口内绑定；正常模式只允许已绑定的 central 控制。固件使用 Display Only 六位配对码（本地串口显示），要求 MITM 认证，不使用 Just Works。Mac 的 Core Bluetooth 会响应外设安全要求，Mac UI 不自行读取或保存蓝牙链路密钥。
 
-客户端保存 Core Bluetooth peripheral UUID，以便重连；这只是设备记忆，**不是加密绑定本身，也不能证明第三方固件强制加密**。固件实现与安全联调前不要转发敏感输入。“忘记设备”清除应用内记忆，系统及板端 bond 需分别清除。
+客户端保存 Core Bluetooth peripheral UUID，以便重连；这只是设备记忆，**不是加密绑定本身，也不能证明第三方固件强制加密**。安全联调完成前不要转发敏感输入。“忘记设备”清除应用内记忆，系统及板端 bond 需分别清除。
 
 ## 20 字节格式
 
